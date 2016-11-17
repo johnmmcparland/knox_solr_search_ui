@@ -1,15 +1,47 @@
-<!doctype html>
-<html ng-app="demo">
-	<head>
-		<title>Hello AngularJS</title>
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
-    	<script src="hello.js"></script>
-	</head>
-
-	<body>
-		<div ng-controller="Hello">
-			<p>The ID is {{greeting.id}}</p>
-			<p>The content is {{greeting.content}}</p>
-		</div>
-	</body>
+<!DOCTYPE html>
+<html data-ng-app="formSubmit">
+<head>
+<meta charset="ISO-8859-1">
+<title>AngularJS Post Form Spring MVC example</title>
+<script src="angular.min.js"></script>
+<script type="text/javascript">
+	var app = angular.module('formSubmit', []);
+	
+	app.controller('FormSubmitController',[ '$scope', '$http', function($scope, $http) {
+			
+		$scope.list = [];
+			$scope.headerText = 'AngularJS Post Form Spring MVC example: Submit below form';
+			$scope.submit = function() {
+				
+				var formData = {
+						"collection" : $scope.collection,
+						"query" : $scope.query
+				};
+				
+				var response = $http.post('search', formData);
+				response.success(function(data, status, headers, config) {
+					$scope.list.push(data);
+				});
+				response.error(function(data, status, headers, config) {
+					alert( "Exception details: " + JSON.stringify({data: data}));
+				});
+				
+				//Empty list data after process
+				$scope.list = [];
+				
+			};
+		}]);
+</script>
+</head>
+<body>
+	<form data-ng-submit="submit()" data-ng-controller="FormSubmitController">
+		<h3>{{headerText}}</h3>
+		<p>Collection: <input type="text" data-ng-model="collection"></p>
+		<p>Query: <input type="text" data-ng-model="query"></p>
+		<input type="submit" id="submit" value="Submit" /><br>	
+		
+		<h4>You submitted below data through post:</h4>
+		 <pre>Form data ={{list}}</pre>
+	</form>
+</body>
 </html>
