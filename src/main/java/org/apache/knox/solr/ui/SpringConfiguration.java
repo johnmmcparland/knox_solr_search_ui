@@ -18,12 +18,11 @@
  */
 package org.apache.knox.solr.ui;
 
-import org.springframework.beans.factory.config.PropertyOverrideConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
-import org.springframework.core.io.ClassPathResource;
 
 /**
  * A SpringConfiguration.
@@ -32,13 +31,9 @@ import org.springframework.core.io.ClassPathResource;
  *
  */
 @Configuration
-@PropertySource("classpath:application.properties")
+@PropertySources({ @PropertySource("classpath:application.properties"),
+        @PropertySource(value = "file:///usr/knox_solr_search_ui/override.properties", ignoreResourceNotFound = true) })
 public class SpringConfiguration {
-
-    /**
-     * The location of property over ride file.
-     */
-    private static final String OVER_RIDE_PROPERTY_LOCATION = "/usr/knox_solr_search_ui/override.properties";
 
     /**
      * Create a SpringConfiguration.
@@ -54,16 +49,6 @@ public class SpringConfiguration {
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
         return new PropertySourcesPlaceholderConfigurer();
-    }
-
-    /**
-     * @return Property over-rider
-     */
-    @Bean
-    public static PropertyOverrideConfigurer propertyOverrideConfigurer() {
-        PropertyOverrideConfigurer overrideConfigurer = new PropertyOverrideConfigurer();
-        overrideConfigurer.setLocation(new ClassPathResource(OVER_RIDE_PROPERTY_LOCATION));
-        return overrideConfigurer;
     }
 
 }
