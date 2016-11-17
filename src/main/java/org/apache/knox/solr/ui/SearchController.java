@@ -56,6 +56,25 @@ public class SearchController {
     }
 
     /**
+     * Get the knoxSolrConfig.
+     * 
+     * @return the knoxSolrConfig.
+     */
+    public KnoxSolrConfig getKnoxSolrConfig() {
+        return knoxSolrConfig;
+    }
+
+    /**
+     * Set the knoxSolrConfig.
+     * 
+     * @param knoxSolrConfig
+     *            the knoxSolrConfig to set.
+     */
+    public void setKnoxSolrConfig(KnoxSolrConfig knoxSolrConfig) {
+        this.knoxSolrConfig = knoxSolrConfig;
+    }
+
+    /**
      * Do a solr search
      * 
      * @param solrRequest
@@ -102,6 +121,8 @@ public class SearchController {
         sb.append("/");
         sb.append(solrRequest.getSolrCollection());
         sb.append("/");
+        sb.append(knoxSolrConfig.getSolrSearchCommand());
+        sb.append("?");
         sb.append(solrRequest.getSolrQuery());
         return sb.toString();
     }

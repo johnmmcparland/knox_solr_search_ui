@@ -244,16 +244,20 @@ public class KnoxSolrConfig {
         this.knoxTopology = knoxTopology;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#toString()
+    /**
+     * Get the solrSearchCommand.
+     * @return the solrSearchCommand.
      */
-    @Override
-    public String toString() {
-        return "KnoxSolrConfig [protocol=" + protocol + ", ipaddres=" + ipaddres + ", port=" + port + ", solrContext="
-                + solrContext + ", username=" + username + ", knoxContext=" + knoxContext + ", knoxTopology="
-                + knoxTopology + "]";
+    public String getSolrSearchCommand() {
+        return solrSearchCommand;
+    }
+
+    /**
+     * Set the solrSearchCommand.
+     * @param solrSearchCommand the solrSearchCommand to set.
+     */
+    public void setSolrSearchCommand(String solrSearchCommand) {
+        this.solrSearchCommand = solrSearchCommand;
     }
 
 }
