@@ -25,3 +25,6 @@ nbdist/
 
 ### Maven
 .mvn
+
+## Application
+LOGDIR_IS_UNDEFINED

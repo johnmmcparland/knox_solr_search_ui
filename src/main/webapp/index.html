@@ -2,7 +2,7 @@
 <html data-ng-app="formSubmit">
 <head>
 <meta charset="ISO-8859-1">
-<title>AngularJS Post Form Spring MVC example</title>
+<title>Searching Solr via Apache Knox Example</title>
 <script src="angular.min.js"></script>
 <script type="text/javascript">
 	var app = angular.module('formSubmit', []);
@@ -10,15 +10,15 @@
 	app.controller('FormSubmitController',[ '$scope', '$http', function($scope, $http) {
 			
 		$scope.list = [];
-			$scope.headerText = 'AngularJS Post Form Spring MVC example: Submit below form';
+			$scope.headerText = 'Submit Solr Query, providing the collection to search, and the query below.';
 			$scope.submit = function() {
 				
-				var formData = {
-						"collection" : $scope.collection,
-						"query" : $scope.query
+				var solrRequest = {
+						"solrCollection" : $scope.solrCollection,
+						"solrQuery" : $scope.solrQuery
 				};
 				
-				var response = $http.post('search', formData);
+				var response = $http.post('search', solrRequest);
 				response.success(function(data, status, headers, config) {
 					$scope.list.push(data);
 				});
@@ -36,8 +36,8 @@
 <body>
 	<form data-ng-submit="submit()" data-ng-controller="FormSubmitController">
 		<h3>{{headerText}}</h3>
-		<p>Collection: <input type="text" data-ng-model="collection"></p>
-		<p>Query: <input type="text" data-ng-model="query"></p>
+		<p>Collection: <input type="text" data-ng-model="solrCollection"></p>
+		<p>Query: <input type="text" data-ng-model="solrQuery"></p>
 		<input type="submit" id="submit" value="Submit" /><br>	
 		
 		<h4>You submitted below data through post:</h4>

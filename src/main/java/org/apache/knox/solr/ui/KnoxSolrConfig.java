@@ -57,31 +57,31 @@ public class KnoxSolrConfig {
     /**
      * The username.
      */
-    @Value("${config.username")
+    @Value("${config.username}")
     private String username = null;
 
     /**
      * The password.
      */
-    @Value("${config.password")
+    @Value("${config.password}")
     private String password = null;
 
     /**
      * The knoxContext.
      */
-    @Value("${config.knoxContext:gateway")
+    @Value("${config.knoxContext:gateway}")
     private String knoxContext = null;
 
     /**
      * The knoxTopology.
      */
-    @Value("${config.knoxTopology:sandbox")
+    @Value("${config.knoxTopology:sandbox}")
     private String knoxTopology = null;
 
     /**
      * The solrSearchCommand.
      */
-    @Value("${config.solrSearchCommand:search")
+    @Value("${config.solrSearchCommand:search}")
     private String solrSearchCommand = null;
 
     /**
